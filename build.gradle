@@ -1,0 +1,263 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        maven { // PARCHMENT
+            url = "https://maven.parchmentmc.org"
+        }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.0.+', changing: true
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.4.0"
+        classpath "org.ajoberstar.grgit:grgit-gradle:5.3.0"
+        classpath 'org.parchmentmc:librarian:1.+'
+    }
+}
+
+plugins {
+    // It's safest to have this on 2.+ to get the latest features and
+    // bug fixes without having to worry about breaking changes.
+    id "com.modrinth.minotaur" version "2.+"
+    id "org.lwjgl.plugin" version "0.0.34"
+    id "idea"
+    id "maven-publish"
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+apply plugin: 'com.matthewprenger.cursegradle'
+apply plugin: 'org.ajoberstar.grgit'
+apply from: "https://moddingtutorials.org/applesilicon.gradle"
+
+def branch = grgit.branch.current()
+println "On branch: ${branch.fullName}"
+println "Pipeline branch: " + (System.getenv('CI_COMMIT_BRANCH') ?: 'NONE')
+
+group = 'com.sweetrpg'
+archivesBaseName = "${project.name}-${project.target_mc_version}"
+version = System.getenv("MOD_VERSION") ?: new File(".release-info/${project.base_mc_version}/VERSION").text.trim()
+
+println "Project version: ${version}"
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+
+sourceSets {
+    main {
+        resources {
+            srcDirs += 'src/generated/resources'
+            exclude '.cache/'
+        }
+    }
+    test {
+    }
+}
+
+configurations {
+    apiImplementation.extendsFrom(implementation)
+    apiRuntimeOnly.extendsFrom(runtimeOnly)
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+repositories {
+    maven {
+    // location of the maven that hosts JEI files before January 2023
+    name = "Progwml6's maven"
+    url = "https://dvs1.progwml6.com/files/maven/"
+  }
+  maven {
+    // location of the maven that hosts JEI files since January 2023
+    name = "Jared's maven"
+    url = "https://maven.blamejared.com/"
+  }
+  maven {
+    // location of a maven mirror for JEI files, as a fallback
+    name = "ModMaven"
+    url = "https://modmaven.dev"
+  }
+    maven {
+        url = 'https://www.cursemaven.com'
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
+    maven {
+        url "https://oss.sonatype.org/content/repositories/releases/"
+    }
+
+    mavenCentral()
+    mavenLocal()
+}
+
+minecraft {
+    mappings channel: 'official', version: project.mc_version
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client {
+            taskName 'client'
+            workingDirectory file('run')
+            property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            mods {
+                create(mod_id) {
+                    source(sourceSets.main)
+                }
+            }
+        }
+
+        server {
+            taskName 'server'
+            workingDirectory file('run-server')
+            property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            mods {
+                create(mod_id) {
+                    source(sourceSets.main)
+                }
+            }
+        }
+
+        data {
+            taskName 'data'
+            workingDirectory file('run')
+            property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            args '--mod', project.mod_id, '--all', '--output', '"' + file('src/generated/resources/') + '"', '--existing', '"' + sourceSets.main.resources.srcDirs[0] + '"'
+            mods {
+                create(mod_id) {
+                    source(sourceSets.main)
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${project.forge_version}"
+
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
+    runtimeOnly fg.deobf("curse.maven:patchouli-${ptch_project_id}:${ptch_file_id}")
+    runtimeOnly fg.deobf("curse.maven:the-one-probe-${top_project_id}:${top_file_id}")
+
+    implementation fg.deobf("curse.maven:farmers-delight-${farmers_project_id}:${farmers_file_id}")
+     implementation fg.deobf("curse.maven:create-${create_project_id}:${create_file_id}")
+     implementation fg.deobf("curse.maven:ars-nouveau-${ars_project_id}:${ars_file_id}")
+     implementation fg.deobf("curse.maven:curios-${curios_project_id}:${curios_file_id}")
+//    implementation fg.deobf("curse.maven:celestial-exploration-${cexp_project_id}:${cexp_file_id}")
+//    implementation fg.deobf("curse.maven:azurelib-${azure_project_id}:${azure_file_id}")
+    implementation fg.deobf("curse.maven:super-secret-doors-${ssd_project_id}:${ssd_file_id}")
+
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${jupiter_version}")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${jupiter_version}")
+}
+
+// Define a task to create a jar of project sources
+task sourcesJar(type: Jar) {
+    duplicatesStrategy(DuplicatesStrategy.FAIL)
+    archiveClassifier = 'sources'
+    from sourceSets.main.allJava
+}
+
+// Add the sources and API jars to the list of generated artifacts
+artifacts {
+    archives sourcesJar
+}
+
+def replaceResources = tasks.register('replaceResources', Copy) {
+    it.outputs.upToDateWhen { false }
+    it.from(sourceSets.main.resources) {
+        include 'META-INF/mods.toml'
+        expand([
+            'version': project.version,
+            'minecraft_version_range': project.minecraft_version_range,
+            'forge_version_range': project.forge_version_range,
+            'fml_version_range': project.fml_version_range,
+        ])
+    }
+    it.into "$buildDir/resources/main/"
+}
+
+processResources {
+    duplicatesStrategy(DuplicatesStrategy.INCLUDE) // .FAIL
+    exclude('META-INF/mods.toml')
+    configure { finalizedBy(replaceResources) }
+}
+
+classes.configure {
+    dependsOn(replaceResources)
+}
+
+compileJava {
+    options.compilerArgs = ['-Xdiags:verbose']
+}
+
+jar {
+    from sourceSets.main.output
+
+    manifest {
+        attributes([
+            "Specification-Title": project.name,
+            "Specification-Vendor": "SweetRPG",
+            "Specification-Version": project.version,
+            "Implementation-Title": project.name,
+            "Implementation-Version": project.version,
+            "Implementation-Vendor" :"SweetRPG",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+curseforge {
+    apiKey = System.getenv('CURSEFORGE_API_KEY') ?: 0
+    project {
+        id = project.curseforge_project_id
+        changelog = file("CHANGELOG/${project.base_mc_version}/current.md")
+        changelogType = 'markdown'
+        releaseType = findProperty("curseforge_release_type") ?: 'beta'
+        addGameVersion project.target_mc_version
+        relations {
+            optionalDependency 'configured'
+            requiredDependency 'jei'
+            optionalDependency 'patchouli'
+        }
+    }
+    options {
+        detectNewerJava = true
+    }
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_API_KEY")
+    projectId = project.modrinth_project_id
+    versionNumber = project.version
+    versionType = project.modrinth_release_type
+    uploadFile = jar
+    gameVersions = [project.target_mc_version] // Must be an array, even with only one version
+    changelog = file("CHANGELOG/${project.base_mc_version}/current.md").text
+    loaders = ["forge"]
+    dependencies {
+        optional.project "configured"
+        required.project "jei"
+        optional.project "patchouli"
+    }
+}
