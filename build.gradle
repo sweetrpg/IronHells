@@ -19,7 +19,7 @@ plugins {
     // It's safest to have this on 2.+ to get the latest features and
     // bug fixes without having to worry about breaking changes.
     id "com.modrinth.minotaur" version "2.+"
-    id "org.lwjgl.plugin" version "0.0.34"
+    id "org.lwjgl.plugin" version "0.0.35"
     id "idea"
     id "maven-publish"
 }
