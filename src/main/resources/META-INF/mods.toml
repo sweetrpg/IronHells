@@ -1,0 +1,40 @@
+modLoader="javafml"
+loaderVersion="${fml_version_range}"
+license="MIT"
+issueTrackerURL="https://github.com/sweetrpg/IronHells/issues"
+displayURL="https://minecraft.curseforge.com/projects/iron-hells/"
+logoFile= "ih_logo.png"
+displayName="Iron Hells"
+
+[[mods]]
+    modId="ironhells"
+    version="${version}"
+    updateJSONURL="https://minecraft.sweetrpg.com/mods/ironhells/version.json"
+    displayName="Iron Hells"
+    credits="paulyhedral"
+    authors="paulyhedral"
+    description='''
+    Angband is a roguelike dungeon crawler that has been around since 1990. It is a game of exploration, strategy, and survival. The player must navigate through a series of levels, each with its own unique challenges and enemies. The goal is to reach the bottom level of the dungeon and defeat Morgoth, the Dark Lord.
+    This mod is a port of Angband to Minecraft. It aims to recreate the experience of playing Angband in Minecraft, while also adding some new features and content. The mod is still in development, but it is already playable and has a lot of content.
+    The mod is heavily inspired by the original Angband, but it also takes some liberties with the gameplay and mechanics. The mod is designed to be challenging, but also fun and rewarding. The mod is still in development, but it is already playable and has a lot of content.
+    '''
+[[dependencies.ironhells]]
+    modId="forge"
+    mandatory=true
+    versionRange="${forge_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.ironhells]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.ironhells]]
+    modId="patchouli"
+    mandatory=false
+    versionRange="[1.20.1-84-FORGE,)"
+    ordering="NONE"
+    side="BOTH"
