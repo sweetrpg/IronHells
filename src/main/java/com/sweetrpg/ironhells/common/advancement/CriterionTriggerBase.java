@@ -1,7 +1,7 @@
-package com.sweetrpg.crafttracker.common.advancement;
+package com.sweetrpg.ironhells.common.advancement;
 
 import com.google.common.collect.Maps;
-import com.sweetrpg.crafttracker.common.util.Util;
+import com.sweetrpg.ironhells.common.util.Util;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;

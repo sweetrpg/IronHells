@@ -1,7 +1,7 @@
 {
   "name": "Craft Queue Overlay",
   "icon": "minecraft:iron_pickaxe",
-  "category": "crafttracker:config",
+  "category": "ironhells:config",
   "pages": [
     {
       "type": "patchouli:text",

@@ -1,7 +1,7 @@
 {
   "name": "The Queue Manager",
   "icon": "minecraft:paper",
-  "category": "crafttracker:queue",
+  "category": "ironhells:queue",
   "pages": [
     {
       "type": "patchouli:text",

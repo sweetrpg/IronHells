@@ -1,12 +1,12 @@
-package com.sweetrpg.crafttracker.common.event;
+package com.sweetrpg.ironhells.common.event;
 
-import com.sweetrpg.crafttracker.CraftTracker;
-import com.sweetrpg.crafttracker.client.event.CraftingEvents;
-import com.sweetrpg.crafttracker.common.Constants;
-import com.sweetrpg.crafttracker.common.network.PacketHandler;
-import com.sweetrpg.crafttracker.common.network.packet.data.QueueCommandData;
-import com.sweetrpg.crafttracker.common.registry.ModAdvancements;
-import com.sweetrpg.crafttracker.common.util.AdvancementUtil;
+import com.sweetrpg.ironhells.IronHells;
+import com.sweetrpg.ironhells.client.event.CraftingEvents;
+import com.sweetrpg.ironhells.common.Constants;
+import com.sweetrpg.ironhells.common.network.PacketHandler;
+import com.sweetrpg.ironhells.common.network.packet.data.QueueCommandData;
+import com.sweetrpg.ironhells.common.registry.ModAdvancements;
+import com.sweetrpg.ironhells.common.util.AdvancementUtil;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.player.PlayerEvent.ItemCraftedEvent;
@@ -17,14 +17,14 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static com.sweetrpg.crafttracker.common.network.packet.data.QueueCommandData.QueueCommand.RECALCULATE;
+import static com.sweetrpg.ironhells.common.network.packet.data.QueueCommandData.QueueCommand.RECALCULATE;
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID)
 public class EventHandler {
 
     @SubscribeEvent
     public void onItemCrafted(final ItemCraftedEvent event) {
-        CraftTracker.LOGGER.debug("EventHandler#onItemCrafted: {}", event);
+        IronHells.LOGGER.debug("EventHandler#onItemCrafted: {}", event);
 
         if(event.getEntity().level().isClientSide) {
             DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
@@ -42,7 +42,7 @@ public class EventHandler {
 
     @SubscribeEvent
     public void onItemSmelted(final ItemSmeltedEvent event) {
-        CraftTracker.LOGGER.debug("EventHandler#onItemSmelted: {}", event);
+        IronHells.LOGGER.debug("EventHandler#onItemSmelted: {}", event);
 
         if(event.getEntity().level().isClientSide) {
             DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
@@ -60,7 +60,7 @@ public class EventHandler {
 
     @SubscribeEvent
     public void onItemPickedUp(final ItemPickupEvent event) {
-        CraftTracker.LOGGER.debug("EventHandler#onItemPickedUp: {}", event);
+        IronHells.LOGGER.debug("EventHandler#onItemPickedUp: {}", event);
 
         if(event.getEntity().level().isClientSide) {
             DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {

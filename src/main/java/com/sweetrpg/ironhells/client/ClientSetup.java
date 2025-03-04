@@ -1,9 +1,9 @@
-package com.sweetrpg.crafttracker.client;
+package com.sweetrpg.ironhells.client;
 
-import com.sweetrpg.crafttracker.client.event.ClientEventHandler;
-import com.sweetrpg.crafttracker.client.overlay.CraftQueueOverlay;
-import com.sweetrpg.crafttracker.client.overlay.ShoppingListOverlay;
-import com.sweetrpg.crafttracker.common.registry.ModKeyBindings;
+import com.sweetrpg.ironhells.client.event.ClientEventHandler;
+import com.sweetrpg.ironhells.client.overlay.CraftQueueOverlay;
+import com.sweetrpg.ironhells.client.overlay.ShoppingListOverlay;
+import com.sweetrpg.ironhells.common.registry.ModKeyBindings;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;

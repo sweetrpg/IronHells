@@ -1,7 +1,7 @@
 {
   "name": "Shopping List Overlay",
   "icon": "minecraft:stone_pickaxe",
-  "category": "crafttracker:config",
+  "category": "ironhells:config",
   "pages": [
     {
       "type": "patchouli:text",

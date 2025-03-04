@@ -1,9 +1,7 @@
-package com.sweetrpg.crafttracker.integration.jei;
+package com.sweetrpg.ironhells.integration.jei;
 
-import com.sweetrpg.crafttracker.CraftTracker;
-import com.sweetrpg.crafttracker.common.Constants;
-import com.sweetrpg.crafttracker.common.manager.CraftingQueueManager;
-import com.sweetrpg.crafttracker.common.manager.ShoppingListManager;
+import com.sweetrpg.ironhells.IronHells;
+import com.sweetrpg.ironhells.common.Constants;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.runtime.IJeiRuntime;
@@ -14,7 +12,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 
 @JeiPlugin
-public class CTPlugin implements IModPlugin {
+public class IHPlugin implements IModPlugin {
 
     public static IJeiRuntime jeiRuntime;
 
@@ -25,15 +23,13 @@ public class CTPlugin implements IModPlugin {
 
     @Override
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
-        CraftTracker.LOGGER.debug("CTPlugin#onRuntimeAvailable: {}", jeiRuntime);
+        IronHells.LOGGER.debug("CTPlugin#onRuntimeAvailable: {}", jeiRuntime);
 
-        CTPlugin.jeiRuntime = jeiRuntime;
+        IHPlugin.jeiRuntime = jeiRuntime;
 
         // TODO: move this elsewhere to remove hard dependency on JEI
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             Player player = Minecraft.getInstance().player;
-            CraftingQueueManager.INSTANCE.load(player);
-            ShoppingListManager.INSTANCE.load(player);
         });
     }
 }

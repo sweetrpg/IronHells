@@ -10,7 +10,7 @@
           "functions": [
             {
               "function": "set_nbt",
-              "tag": "{\"patchouli:book\": \"crafttracker:craft_tracking\"}"
+              "tag": "{\"patchouli:book\": \"ironhells:craft_tracking\"}"
             }
           ]
         }

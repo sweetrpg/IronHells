@@ -1,4 +1,4 @@
-package com.sweetrpg.crafttracker.integration;
+package com.sweetrpg.ironhells.integration;
 
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;

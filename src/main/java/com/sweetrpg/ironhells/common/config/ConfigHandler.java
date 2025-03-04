@@ -1,10 +1,10 @@
-package com.sweetrpg.crafttracker.common.config;
+package com.sweetrpg.ironhells.common.config;
 
-import com.sweetrpg.crafttracker.CraftTracker;
-import com.sweetrpg.crafttracker.common.Constants;
-import com.sweetrpg.crafttracker.common.manager.CraftingQueueManager;
-import com.sweetrpg.crafttracker.data.Costs;
-import com.sweetrpg.crafttracker.data.Multipliers;
+import com.sweetrpg.ironhells.IronHells;
+import com.sweetrpg.ironhells.common.Constants;
+import com.sweetrpg.ironhells.common.manager.CraftingQueueManager;
+import com.sweetrpg.ironhells.data.Costs;
+import com.sweetrpg.ironhells.data.Multipliers;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,7 +35,7 @@ public class ConfigHandler {
         ForgeConfigSpec configServerSpec = serverPair.getRight();
         SERVER = serverPair.getLeft();
 
-        CraftTracker.LOGGER.debug("register configs");
+        IronHells.LOGGER.debug("register configs");
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, configClientSpec);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, configCommonSpec);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, configServerSpec);
@@ -44,13 +44,13 @@ public class ConfigHandler {
     }
 
     public static void configEventHandler(ModConfigEvent event) {
-        CraftTracker.LOGGER.debug("#configEventHandler: {}", event);
+        IronHells.LOGGER.debug("#configEventHandler: {}", event);
 
         if(event instanceof ModConfigEvent.Reloading &&
                 ((event.getConfig().getType() == ModConfig.Type.CLIENT) ||
                         (event.getConfig().getType() == ModConfig.Type.COMMON)) &&
                 Minecraft.getInstance().level != null) {
-            CraftTracker.LOGGER.debug("config is reloading");
+            IronHells.LOGGER.debug("config is reloading");
 
             CraftingQueueManager.INSTANCE.computeAll();
         }

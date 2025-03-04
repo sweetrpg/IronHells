@@ -1,7 +1,7 @@
-package com.sweetrpg.crafttracker.common.registry;
+package com.sweetrpg.ironhells.common.registry;
 
-import com.sweetrpg.crafttracker.common.util.Util;
-import com.sweetrpg.crafttracker.data.DisplayInfoBuilder;
+import com.sweetrpg.ironhells.common.util.Util;
+import com.sweetrpg.ironhells.data.DisplayInfoBuilder;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.RequirementsStrategy;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import static com.sweetrpg.crafttracker.common.advancement.SimpleTrigger.MAIN_CRITERION;
+import static com.sweetrpg.ironhells.common.advancement.SimpleTrigger.MAIN_CRITERION;
 
 public class ModAdvancements {
     public static final Map<Key, Advancement> ENTRIES = new HashMap<>();
@@ -22,7 +22,7 @@ public class ModAdvancements {
             .display(DisplayInfoBuilder.create()
                     .icon(Items.PAPER)
                     .frame(FrameType.TASK)
-                    .translate("crafttracker.main.root")
+                    .translate("ironhells.main.root")
                     .background("stone.png")
                     .build())
             .addCriterion(MAIN_CRITERION, PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location().build()))
@@ -31,7 +31,7 @@ public class ModAdvancements {
             .display(DisplayInfoBuilder.create()
                     .icon(Items.PAPER)
                     .frame(FrameType.TASK)
-                    .translate("crafttracker.main.queue_item")
+                    .translate("ironhells.main.queue_item")
                     .background("stone.png")
                     .build())
             .addCriterion(MAIN_CRITERION, ModTriggers.addSimple("queue_item").instance())
@@ -40,7 +40,7 @@ public class ModAdvancements {
             .display(DisplayInfoBuilder.create()
                     .icon(Items.CRAFTING_TABLE)
                     .frame(FrameType.TASK)
-                    .translate("crafttracker.main.craft_item")
+                    .translate("ironhells.main.craft_item")
                     .background("stone.png")
                     .build())
             .addCriterion(MAIN_CRITERION, ModTriggers.addSimple("craft_item").instance())
@@ -49,7 +49,7 @@ public class ModAdvancements {
             .display(DisplayInfoBuilder.create()
                     .icon(Items.PAPER)
                     .frame(FrameType.TASK)
-                    .translate("crafttracker.main.populate_list")
+                    .translate("ironhells.main.populate_list")
                     .background("stone.png")
                     .build())
             .addCriterion(MAIN_CRITERION, ModTriggers.addSimple("populate_list").instance())
@@ -58,7 +58,7 @@ public class ModAdvancements {
             .display(DisplayInfoBuilder.create()
                     .icon(Items.CRAFTING_TABLE)
                     .frame(FrameType.TASK)
-                    .translate("crafttracker.main.acquire_item")
+                    .translate("ironhells.main.acquire_item")
                     .background("stone.png")
                     .build())
             .addCriterion(MAIN_CRITERION, ModTriggers.addSimple("acquire_item").instance())
@@ -67,7 +67,7 @@ public class ModAdvancements {
             .display(DisplayInfoBuilder.create()
                     .icon(Items.CRAFTING_TABLE)
                     .frame(FrameType.TASK)
-                    .translate("crafttracker.main.clear_queue")
+                    .translate("ironhells.main.clear_queue")
                     .background("stone.png")
                     .build())
             .addCriterion(MAIN_CRITERION, ModTriggers.addSimple("clear_queue").instance())

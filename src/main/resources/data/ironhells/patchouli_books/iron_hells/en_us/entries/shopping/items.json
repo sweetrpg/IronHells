@@ -1,7 +1,7 @@
 {
   "name": "The Shopping List",
   "icon": "minecraft:paper",
-  "category": "crafttracker:shopping",
+  "category": "ironhells:shopping",
   "pages": [
     {
       "type": "patchouli:text",

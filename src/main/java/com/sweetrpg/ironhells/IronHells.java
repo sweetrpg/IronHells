@@ -1,14 +1,14 @@
-package com.sweetrpg.crafttracker;
+package com.sweetrpg.ironhells;
 
-import com.sweetrpg.crafttracker.client.ClientSetup;
-import com.sweetrpg.crafttracker.client.event.ClientEventHandler;
-import com.sweetrpg.crafttracker.common.CommonSetup;
-import com.sweetrpg.crafttracker.common.Constants;
-import com.sweetrpg.crafttracker.common.config.ConfigHandler;
-import com.sweetrpg.crafttracker.common.event.EventHandler;
-import com.sweetrpg.crafttracker.data.CTAdvancementProvider;
-import com.sweetrpg.crafttracker.data.CTLangProvider;
-import com.sweetrpg.crafttracker.integration.AddonManager;
+import com.sweetrpg.ironhells.client.ClientSetup;
+import com.sweetrpg.ironhells.client.event.ClientEventHandler;
+import com.sweetrpg.ironhells.common.CommonSetup;
+import com.sweetrpg.ironhells.common.Constants;
+import com.sweetrpg.ironhells.common.config.ConfigHandler;
+import com.sweetrpg.ironhells.common.event.EventHandler;
+import com.sweetrpg.ironhells.data.CTAdvancementProvider;
+import com.sweetrpg.ironhells.data.CTLangProvider;
+import com.sweetrpg.ironhells.integration.AddonManager;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.api.distmarker.Dist;
@@ -32,7 +32,7 @@ import org.apache.logging.log4j.Logger;
  * @author Paulyhedral
  */
 @Mod(Constants.MOD_ID)
-public class CraftTracker {
+public class IronHells {
 
     public static final Logger LOGGER = LogManager.getLogger(Constants.MOD_ID);
 
@@ -43,7 +43,7 @@ public class CraftTracker {
             .simpleChannel();
 
 
-    public CraftTracker() {
+    public IronHells() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Mod lifecycle

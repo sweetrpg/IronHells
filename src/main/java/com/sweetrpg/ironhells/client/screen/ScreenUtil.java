@@ -1,4 +1,4 @@
-package com.sweetrpg.crafttracker.client.screen;
+package com.sweetrpg.ironhells.client.screen;
 
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;

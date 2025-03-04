@@ -1,4 +1,4 @@
-package com.sweetrpg.crafttracker.common;
+package com.sweetrpg.ironhells.common;
 
 /**
  * Container class for runtime information.
@@ -14,15 +14,10 @@ public class Runtime {
         DYNAMIC,
     }
 
-    public OverlayState queueOverlayRequestedState;
-    public OverlayState shoppingOverlayRequestedState;
-
     public Runtime() {
         init();
     }
 
     private void init() {
-        this.queueOverlayRequestedState = OverlayState.DYNAMIC;
-        this.shoppingOverlayRequestedState = OverlayState.DYNAMIC;
     }
 }

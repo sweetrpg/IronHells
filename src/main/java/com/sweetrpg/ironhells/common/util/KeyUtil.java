@@ -1,4 +1,4 @@
-package com.sweetrpg.crafttracker.common.util;
+package com.sweetrpg.ironhells.common.util;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;

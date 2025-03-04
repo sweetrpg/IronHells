@@ -1,4 +1,4 @@
-package com.sweetrpg.crafttracker.common.network;
+package com.sweetrpg.ironhells.common.network;
 
 import net.minecraft.network.FriendlyByteBuf;
 

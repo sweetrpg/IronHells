@@ -1,7 +1,7 @@
-package com.sweetrpg.crafttracker.common.registry;
+package com.sweetrpg.ironhells.common.registry;
 
-import com.sweetrpg.crafttracker.common.advancement.CriterionTriggerBase;
-import com.sweetrpg.crafttracker.common.advancement.SimpleTrigger;
+import com.sweetrpg.ironhells.common.advancement.CriterionTriggerBase;
+import com.sweetrpg.ironhells.common.advancement.SimpleTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
 
 import java.util.HashMap;

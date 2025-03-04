@@ -1,8 +1,8 @@
-package com.sweetrpg.crafttracker.client.screen.widget;
+package com.sweetrpg.ironhells.client.screen.widget;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.sweetrpg.crafttracker.common.util.Resources;
+import com.sweetrpg.ironhells.common.util.Resources;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;

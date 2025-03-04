@@ -1,7 +1,7 @@
-package com.sweetrpg.crafttracker.integration;
+package com.sweetrpg.ironhells.integration;
 
 import com.google.common.collect.Lists;
-import com.sweetrpg.crafttracker.CraftTracker;
+import com.sweetrpg.ironhells.IronHells;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +22,7 @@ public class AddonManager {
     public static void exec() {
         // execs the addons that didn't error
         doWork(RUN, Addon::shouldLoad, Addon::exec, (addon, e) -> {
-            CraftTracker.LOGGER.warn("Failed to init {}", addon.getName());
+            IronHells.LOGGER.warn("Failed to init {}", addon.getName());
             e.printStackTrace();
         });
     }

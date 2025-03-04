@@ -1,4 +1,4 @@
-package com.sweetrpg.crafttracker.common.util;
+package com.sweetrpg.ironhells.common.util;
 
 import net.minecraft.resources.ResourceLocation;
 

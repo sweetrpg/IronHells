@@ -1,7 +1,7 @@
 {
   "name": "Item Costs",
   "icon": "minecraft:gold_ingot",
-  "category": "crafttracker:config",
+  "category": "ironhells:config",
   "pages": [
     {
       "type": "patchouli:text",

@@ -6,7 +6,7 @@
   },
   "rewards": {
     "loot": [
-      "crafttracker:grant_book_on_first_join"
+      "ironhells:grant_book_on_first_join"
     ]
   }
 }

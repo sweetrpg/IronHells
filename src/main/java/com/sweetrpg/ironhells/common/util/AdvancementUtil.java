@@ -1,11 +1,11 @@
-package com.sweetrpg.crafttracker.common.util;
+package com.sweetrpg.ironhells.common.util;
 
-import com.sweetrpg.crafttracker.common.advancement.SimpleTrigger;
-import com.sweetrpg.crafttracker.common.registry.ModAdvancements;
-import com.sweetrpg.crafttracker.common.registry.ModTriggers;
+import com.sweetrpg.ironhells.common.advancement.SimpleTrigger;
+import com.sweetrpg.ironhells.common.registry.ModAdvancements;
+import com.sweetrpg.ironhells.common.registry.ModTriggers;
 import net.minecraft.server.level.ServerPlayer;
 
-import static com.sweetrpg.crafttracker.common.advancement.SimpleTrigger.MAIN_CRITERION;
+import static com.sweetrpg.ironhells.common.advancement.SimpleTrigger.MAIN_CRITERION;
 
 public class AdvancementUtil {
 

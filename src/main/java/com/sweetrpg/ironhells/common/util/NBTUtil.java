@@ -1,6 +1,6 @@
-package com.sweetrpg.crafttracker.common.util;
+package com.sweetrpg.ironhells.common.util;
 
-import com.sweetrpg.crafttracker.CraftTracker;
+import com.sweetrpg.ironhells.IronHells;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -122,10 +122,10 @@ public class NBTUtil {
             if (registry.containsKey(rl)) {
                 return registry.getValue(rl);
             } else {
-                CraftTracker.LOGGER.warn("Unable to load registry value in registry {} with resource location {}", registry.getRegistryName(), rl);
+                IronHells.LOGGER.warn("Unable to load registry value in registry {} with resource location {}", registry.getRegistryName(), rl);
             }
         } else {
-            CraftTracker.LOGGER.warn("Unable to load resource location in NBT:{}, for {} registry", key, registry.getRegistryName());
+            IronHells.LOGGER.warn("Unable to load resource location in NBT:{}, for {} registry", key, registry.getRegistryName());
         }
 
         return null;

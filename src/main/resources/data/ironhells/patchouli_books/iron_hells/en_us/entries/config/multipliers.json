@@ -1,7 +1,7 @@
 {
   "name": "Multipliers",
   "icon": "minecraft:raw_iron",
-  "category": "crafttracker:config",
+  "category": "ironhells:config",
   "pages": [
     {
       "type": "patchouli:text",
