@@ -6,8 +6,8 @@ import com.sweetrpg.ironhells.common.CommonSetup;
 import com.sweetrpg.ironhells.common.Constants;
 import com.sweetrpg.ironhells.common.config.ConfigHandler;
 import com.sweetrpg.ironhells.common.event.EventHandler;
-import com.sweetrpg.ironhells.data.CTAdvancementProvider;
-import com.sweetrpg.ironhells.data.CTLangProvider;
+import com.sweetrpg.ironhells.data.IHAdvancementProvider;
+import com.sweetrpg.ironhells.data.IHLangProvider;
 import com.sweetrpg.ironhells.integration.AddonManager;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -97,10 +97,10 @@ public class IronHells {
         PackOutput packOutput = gen.getPackOutput();
         var lookup = event.getLookupProvider();
 
-        gen.addProvider(event.includeServer(), new CTLangProvider(packOutput, Constants.LOCALE_EN_US));
-        gen.addProvider(event.includeServer(), new CTLangProvider(packOutput, Constants.LOCALE_EN_GB));
-        gen.addProvider(event.includeServer(), new CTLangProvider(packOutput, Constants.LOCALE_DE_DE));
+        gen.addProvider(event.includeServer(), new IHLangProvider(packOutput, Constants.LOCALE_EN_US));
+        gen.addProvider(event.includeServer(), new IHLangProvider(packOutput, Constants.LOCALE_EN_GB));
+        gen.addProvider(event.includeServer(), new IHLangProvider(packOutput, Constants.LOCALE_DE_DE));
 
-        gen.addProvider(event.includeServer(), new CTAdvancementProvider(packOutput, lookup, event.getExistingFileHelper()));
+        gen.addProvider(event.includeServer(), new IHAdvancementProvider(packOutput, lookup, event.getExistingFileHelper()));
     }
 }

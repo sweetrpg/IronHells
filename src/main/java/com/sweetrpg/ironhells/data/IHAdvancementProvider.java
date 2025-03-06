@@ -1,0 +1,44 @@
+package com.sweetrpg.ironhells.data;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.sweetrpg.ironhells.common.registry.ModAdvancements;
+import com.sweetrpg.ironhells.common.util.Util;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.common.data.ForgeAdvancementProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.nio.file.Path;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
+
+public class IHAdvancementProvider extends ForgeAdvancementProvider {
+
+    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
+
+    public IHAdvancementProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, ExistingFileHelper existingFileHelper) {
+        super(output, registries, existingFileHelper, List.of(new AdvancementsSubProvider()));
+    }
+
+    private static Path getPath(Path pathIn, Advancement advancementIn) {
+        return pathIn.resolve("data/" + advancementIn.getId().getNamespace() + "/advancements/" + advancementIn.getId().getPath() + ".json");
+    }
+
+    public static class AdvancementsSubProvider implements ForgeAdvancementProvider.AdvancementGenerator {
+
+        @Override
+        public void generate(HolderLookup.Provider registries, Consumer<Advancement> consumer, ExistingFileHelper existingFileHelper) {
+            // TODO
+            var root = ModAdvancements.ROOT.deconstruct().save(consumer, Util.getResourcePath("main/root"));
+//            var queueItem = ModAdvancements.QUEUE_ITEM.deconstruct().parent(root).save(consumer, Util.getResourcePath("main/queue_item"));
+
+        }
+
+    }
+}
